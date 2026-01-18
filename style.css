@@ -241,19 +241,21 @@ footer {
         width: 100%;
         height: auto;
     }
-}.logo {
-    font-size: 24px;       /* размер текста логотипа */
+.logo {
+    font-size: 28px;        /* размер текста логотипа */
     font-weight: bold;
-    display: flex;         /* текст + картинка на одной линии */
-    align-items: center;   /* вертикальное выравнивание */
+    display: flex;          /* текст + картинка на одной линии */
+    align-items: center;    /* вертикальное выравнивание по центру текста */
 }
 
 .logo-icon {
-    width: 34px;           /* ширина силуэта */
-    height: 64px;          /* высота силуэта */
-    margin: 8 2 0 2px;         /* расстояние между ERN и Baikal */
-    transform: translateY(4px);
+    width: 34px;            /* ширина логотипа */
+    height: 64px;           /* высота логотипа */
+    margin: 0 4px;          /* отступы между ERN и Baikal */
+    vertical-align: middle; /* страховка для выравнивания */
 }
+
+
 
 
 
