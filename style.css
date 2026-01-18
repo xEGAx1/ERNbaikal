@@ -245,14 +245,12 @@ footer {
     font-size: 28px;        /* размер текста логотипа */
     font-weight: bold;
     display: flex;          /* текст + картинка на одной линии */
-    align-items: center;    /* вертикальное выравнивание по центру текста */
 }
 
 .logo-icon {
-    width: 24px;
-    height: 48px;
-    margin: 0 4px;
-}
+    width: 28px;           /* ширина логотипа */
+    height: 56px;          /* высота логотипа */
+    margin: 4px 4px 0 4px; /* сверху 4px — смещаем вниз, остальные отступы как раньше */
 
 
 
