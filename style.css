@@ -252,7 +252,9 @@ footer {
     width: 34px;           /* ширина силуэта */
     height: 64px;          /* высота силуэта */
     margin: 8 2 0 2px;         /* расстояние между ERN и Baikal */
+    transform: translateY(4px);
 }
+
 
 
 
