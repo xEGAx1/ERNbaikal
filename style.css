@@ -251,8 +251,9 @@ footer {
 .logo-icon {
     width: 34px;           /* ширина силуэта */
     height: 64px;          /* высота силуэта */
-    margin: 4 2 0 2px;         /* расстояние между ERN и Baikal */
+    margin: 8 2 0 2px;         /* расстояние между ERN и Baikal */
 }
+
 
 
 
