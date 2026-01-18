@@ -1,0 +1,244 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background: url('images/baikal_background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #004d4d; /* темно-бирюзовый для текста */
+}
+
+/* Полупрозрачный слой для читаемости фона */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2); /* прозрачность уменьшена для яркости */
+    z-index: -1;
+}
+
+/* Добавляем тень для текста */
+p, h1, h2, h3, li {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
+}
+
+/* Контейнер */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
+header {
+    background: rgba(0, 128, 128, 0.85); /* бирюзовый с прозрачностью */
+    color: white;
+    padding: 20px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #aee0e0; /* светлый бирюзовый при наведении */
+}
+
+/* Hero */
+.hero {
+    padding: 60px 20px;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #004d4d;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+    line-height: 1.5;
+}
+
+/* Кнопка */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #00b3b3; /* бирюзовый */
+    color: white;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #33cccc;
+}
+
+/* Секции */
+.section {
+    padding: 60px 20px;
+    background-color: rgba(255, 255, 255, 0.8); /* полупрозрачный белый */
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 32px;
+}
+
+/* Изображения в секциях */
+.section-img {
+    display: block;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+
+/* Карточки */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background: rgba(0, 179, 179, 0.15); /* светлый бирюзовый с прозрачностью */
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    min-height: 380px;
+    justify-content: flex-start;
+}
+
+.card img {
+    width: 280px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.8s ease;
+}
+
+.card.show img {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.card h3, .card p {
+    text-align: center;
+    color: #004d4d;
+}
+
+/* Footer */
+footer {
+    background: rgba(0, 128, 128, 0.85);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 60px;
+}
+
+/* Fade-in */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s ease-out;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Карта */
+.map {
+    width: 100%;
+    height: 400px;
+    border-radius: 15px;
+    border: none;
+}
+
+/* Кнопка Наверх */
+#topBtn {
+    display: none; 
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #00b3b3;
+    color: white;
+    cursor: pointer;
+    padding: 12px 18px;
+    border-radius: 50px;
+    transition: 0.3s;
+}
+
+#topBtn:hover {
+    background-color: #33cccc;
+}
+
+/* Адаптация под телефон */
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .card {
+        width: 90%;
+        min-height: auto;
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+}
