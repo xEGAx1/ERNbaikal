@@ -249,11 +249,12 @@ footer {
 }
 
 .logo-icon {
-    width: 34px;            /* ширина логотипа */
-    height: 64px;           /* высота логотипа */
+    width: 24px;            /* ширина логотипа */
+    height: 48px;           /* высота логотипа */
     margin: 0 4px;          /* отступы между ERN и Baikal */
     vertical-align: middle; /* страховка для выравнивания */
 }
+
 
 
 
