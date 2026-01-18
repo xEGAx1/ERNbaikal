@@ -242,3 +242,15 @@ footer {
         height: auto;
     }
 }
+.logo {
+    font-size: 24px;       /* размер текста логотипа */
+    font-weight: bold;
+    display: flex;         /* текст и SVG на одной линии */
+    align-items: center;   /* выравнивание по вертикали */
+}
+
+.logo-icon {
+    margin: 0 6px;         /* расстояние между ERN и Baikal */
+    vertical-align: middle;
+}
+
