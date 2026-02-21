@@ -23,7 +23,7 @@ body::before {
     z-index: -1;
 }
 
-/* Добавляем тень для текста */
+/* Тень для текста */
 p, h1, h2, h3, li {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
 }
@@ -51,19 +51,19 @@ nav {
 
 /* Логотип */
 .logo {
-    display: flex;           /* текст + картинка на одной линии */
-    align-items: center;     /* выравнивание по вертикали */
-    gap: 10px;               /* расстояние между иконкой и текстом */
+    display: flex;           
+    align-items: center;     
+    gap: 10px;               
     font-size: 28px;
     font-weight: bold;
-    max-height: 60px;        /* ограничение по высоте */
-    overflow: hidden;        /* обрезаем лишние прозрачные области */
+    max-height: 60px;        
+    overflow: hidden;        
 }
 
 .logo-icon {
-    height: 100%;            /* подстраивается под контейнер */
+    height: 100%;            
     width: auto;
-    object-fit: contain;     /* сохраняет пропорции */
+    object-fit: contain;     
     display: block;
 }
 
@@ -82,7 +82,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #aee0e0; /* светлый бирюзовый при наведении */
+    color: #aee0e0;
 }
 
 /* Hero */
@@ -110,7 +110,7 @@ nav a:hover {
 .btn {
     display: inline-block;
     padding: 12px 30px;
-    background: #00b3b3; /* бирюзовый */
+    background: #00b3b3;
     color: white;
     border-radius: 30px;
     text-decoration: none;
@@ -125,7 +125,7 @@ nav a:hover {
 /* Секции */
 .section {
     padding: 60px 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* полупрозрачный белый */
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     margin: 20px 0;
 }
@@ -136,17 +136,18 @@ nav a:hover {
     font-size: 32px;
 }
 
-/* Изображения в секциях */
+/* Большие изображения на внутренних страницах маршрутов */
 .section-img {
     display: block;
-    max-width: 100%;
-    width: auto;
+    width: 100%;
+    max-width: 800px;
     height: auto;
     border-radius: 10px;
     margin: 20px auto;
+    object-fit: cover;
 }
 
-/* Карточки */
+/* Карточки на странице маршрутов */
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -155,7 +156,7 @@ nav a:hover {
 }
 
 .card {
-    background: rgba(0, 179, 179, 0.15); /* светлый бирюзовый с прозрачностью */
+    background: rgba(0, 179, 179, 0.15);
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -257,8 +258,8 @@ footer {
     }
 
     .logo {
-        font-size: 24px;     /* размер текста на мобильных */
-        max-height: 40px;    /* ограничение высоты на мобильных */
+        font-size: 24px;
+        max-height: 40px;
     }
 
     .logo-icon {
@@ -266,12 +267,5 @@ footer {
         width: auto;
     }
 }
-
-
-
-
-
-
-
 
 
