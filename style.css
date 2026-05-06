@@ -291,3 +291,79 @@ footer {
         height: 60px;
     }
 }
+/* ===== СТРАНИЦА МАРШРУТА ===== */
+
+.route-page {
+    text-align: center;
+}
+
+.route-title {
+    font-size: 36px;
+    color: #2f6f4e;
+    margin-bottom: 10px;
+}
+
+.route-subtitle {
+    font-size: 18px;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto 25px;
+    line-height: 1.5;
+}
+
+/* текстовые блоки */
+.route-block {
+    background: rgba(255, 255, 255, 0.88);
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    text-align: left;
+    max-width: 800px;
+    transition: 0.3s;
+}
+
+.route-block:hover {
+    transform: translateY(-5px);
+}
+
+.route-block h3 {
+    color: #2f6f4e;
+    margin-bottom: 10px;
+}
+
+.route-block ul {
+    padding-left: 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* инфо карточки */
+.route-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 18px;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.10);
+    transition: 0.3s;
+}
+
+.info-card:hover {
+    transform: scale(1.05);
+}
+
+.info-card h4 {
+    color: #2f6f4e;
+    margin-bottom: 5px;
+}
+
+.info-card p {
+    font-weight: 600;
+    color: #333;
+}
