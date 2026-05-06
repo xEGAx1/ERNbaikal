@@ -1,4 +1,4 @@
-// Появление элементов при скролле
+// ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ =====
 const items = document.querySelectorAll('.fade-in');
 
 function showOnScroll() {
@@ -6,33 +6,52 @@ function showOnScroll() {
 
     items.forEach(item => {
         const boxTop = item.getBoundingClientRect().top;
+
         if (boxTop < triggerBottom) {
             item.classList.add('show');
-            const img = item.querySelector('img');
-            if(img) img.parentElement.classList.add('show');
         }
     });
 }
 
+// чтобы не дергать лишний раз — легкая оптимизация
 window.addEventListener('scroll', showOnScroll);
-showOnScroll();
+window.addEventListener('load', showOnScroll);
 
-// Кнопка Наверх
+
+// ===== КНОПКА "НАВЕРХ" =====
 const topBtn = document.createElement('button');
 topBtn.id = "topBtn";
-topBtn.innerText = "Наверх";
+topBtn.innerText = "↑ Наверх";
 document.body.appendChild(topBtn);
 
-window.onscroll = function() {scrollFunction()};
+// стиль кнопки (чтобы работала даже без CSS)
+topBtn.style.position = "fixed";
+topBtn.style.bottom = "25px";
+topBtn.style.right = "25px";
+topBtn.style.padding = "10px 14px";
+topBtn.style.border = "none";
+topBtn.style.borderRadius = "12px";
+topBtn.style.background = "#2f6f4e";
+topBtn.style.color = "white";
+topBtn.style.cursor = "pointer";
+topBtn.style.display = "none";
+topBtn.style.boxShadow = "0 10px 25px rgba(0,0,0,0.2)";
+topBtn.style.zIndex = "9999";
 
 function scrollFunction() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+    if (window.scrollY > 300) {
         topBtn.style.display = "block";
     } else {
         topBtn.style.display = "none";
     }
 }
 
-topBtn.addEventListener('click', function() {
-    window.scrollTo({top: 0, behavior: 'smooth'});
+// ВАЖНО: вместо onscroll (чисто и безопасно)
+window.addEventListener('scroll', scrollFunction);
+
+topBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
