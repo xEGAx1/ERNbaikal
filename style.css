@@ -8,18 +8,11 @@
 body {
     background: url('images/baikal_background.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #004d4d;
-    position: relative;
+    color: #003f3f;
 }
 
-/* затемнение */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: rgba(255, 255, 255, 0.25);
-    pointer-events: none;
-}
+/* ❌ УБРАЛИ МУТНУЮ ПЛЁНКУ (это тебя и ломало) */
+/* body::before удалён полностью */
 
 /* контейнер */
 .container {
@@ -28,11 +21,11 @@ body::before {
     padding: 0 15px;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (чёткий, без размытия) ===== */
 header {
-    background: rgba(0, 128, 128, 0.85);
+    background: rgba(0, 128, 128, 0.95);
+    padding: 18px 0;
     color: white;
-    padding: 20px 0;
 }
 
 nav {
@@ -50,41 +43,71 @@ nav ul {
 nav a {
     color: white;
     text-decoration: none;
+    font-weight: 500;
 }
 
 nav a:hover {
-    color: #aee0e0;
+    color: #cfffff;
 }
 
 .logo-icon {
     height: 50px;
 }
 
-/* ===== SECTION ===== */
+/* ===== HERO (главный блок) ===== */
+.hero {
+    padding: 80px 20px;
+    text-align: left;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 44px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    max-width: 600px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 26px;
+    background: #00b3b3;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+}
+
+/* ===== СЕКЦИИ (ЧИСТЫЙ СВЕТЛЫЙ БЛОК БЕЗ МУТИ) ===== */
 .section {
-    margin: 20px 0;
-    padding: 60px 20px;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 15px;
+    margin: 40px 0;
+    padding: 50px 20px;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 .section h2 {
     text-align: center;
     margin-bottom: 30px;
+    color: #006666;
 }
 
-/* главное фото */
+/* ===== ГЛАВНАЯ КАРТИНКА ===== */
 .section-img {
     width: 100%;
     max-width: 800px;
-    height: 400px;
+    height: 380px;
     object-fit: cover;
     display: block;
     margin: 20px auto;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
-/* ===== ГАЛЕРЕЯ (СТАБИЛЬНАЯ) ===== */
+/* ===== ГАЛЕРЕЯ (чистая, не мутная) ===== */
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -98,20 +121,25 @@ nav a:hover {
     height: 180px;
     object-fit: cover;
     border-radius: 12px;
-    display: block;
+    transition: 0.25s ease;
 }
 
-/* ===== КАРТОЧКИ (СТАБИЛЬНЫЕ) ===== */
+.gallery img:hover {
+    transform: scale(1.03);
+}
+
+/* ===== КАРТОЧКИ (ЧЁТКИЕ, НЕ РАЗМАЗАННЫЕ) ===== */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    gap: 22px;
 }
 
 .card {
-    background: rgba(0, 179, 179, 0.15);
-    border-radius: 15px;
+    background: white;
+    border-radius: 16px;
     padding: 15px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 
     display: flex;
     flex-direction: column;
@@ -120,35 +148,31 @@ nav a:hover {
     min-height: 380px;
 }
 
-/* картинки в карточках */
 .card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
-/* кнопка */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #00b3b3;
-    color: white;
-    text-decoration: none;
-    border-radius: 20px;
+.card h3 {
     margin-top: 10px;
-    align-self: flex-start;
+    color: #006666;
 }
 
-/* hover карточек */
+.card p {
+    margin-top: 8px;
+    color: #333;
+}
+
 .card:hover {
-    transform: scale(1.03);
+    transform: translateY(-5px);
     transition: 0.3s;
 }
 
 /* ===== FOOTER ===== */
 footer {
-    background: rgba(0, 128, 128, 0.85);
+    background: rgba(0, 128, 128, 0.95);
     color: white;
     text-align: center;
     padding: 20px;
@@ -167,11 +191,11 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    .gallery img {
-        height: 220px;
+    .section-img {
+        height: 240px;
     }
 
-    .section-img {
-        height: 250px;
+    .hero h1 {
+        font-size: 32px;
     }
 }
