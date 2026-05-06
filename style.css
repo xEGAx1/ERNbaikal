@@ -34,7 +34,7 @@ body::before {
 /* ===== HEADER ===== */
 header {
     background: rgba(60, 140, 90, 0.95);
-    padding: 18px 0;
+    padding: 10px 0; /* уменьшили, чтобы большой логотип влез */
     color: white;
 }
 
@@ -42,6 +42,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 160px; /* важно для большого логотипа */
 }
 
 nav ul {
@@ -60,9 +61,9 @@ nav a:hover {
     color: #d9ffe6;
 }
 
-/* 🔥 ИСПРАВЛЕНИЕ ЛОГОТИПА */
+/* ===== ЛОГОТИП (x3 УВЕЛИЧЕН) ===== */
 .logo-icon {
-    height: 75px;   /* БЫЛО 50px — стало больше */
+    height: 150px;   /* БЫЛО 75px → стало x3 */
     width: auto;
     display: block;
     transition: 0.3s ease;
@@ -91,6 +92,7 @@ nav a:hover {
     max-width: 600px;
 }
 
+/* ===== КНОПКА ===== */
 .btn {
     display: inline-block;
     margin-top: 20px;
@@ -123,7 +125,7 @@ nav a:hover {
     color: #2f6f4e;
 }
 
-/* ===== КАРТИНКА ===== */
+/* ===== ГЛАВНАЯ КАРТИНКА ===== */
 .section-img {
     width: 100%;
     max-width: 800px;
@@ -209,6 +211,7 @@ footer {
     nav {
         flex-direction: column;
         gap: 10px;
+        min-height: auto;
     }
 
     .gallery {
@@ -221,5 +224,9 @@ footer {
 
     .hero h1 {
         font-size: 32px;
+    }
+
+    .logo-icon {
+        height: 100px; /* чтобы на телефоне не ломало */
     }
 }
