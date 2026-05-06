@@ -1,4 +1,3 @@
-/* Общие стили */
 * {
     margin: 0;
     padding: 0;
@@ -9,26 +8,37 @@
 body {
     background: url('images/baikal_background.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #004d4d; /* темно-бирюзовый для текста */
+    color: #004d4d;
+    position: relative;
+    z-index: 0;
 }
 
-/* Полупрозрачный слой для читаемости фона */
+/* ФОН — БЕЗ ЛОМА САЙТА */
 body::before {
     content: "";
     position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.2);
-    z-index: -1;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.25);
+    z-index: 0;
+    pointer-events: none;
 }
 
-/* Тень для текста */
+/* ВСЁ ПОВЕРХ ФОНА */
+header,
+.section,
+.hero,
+footer,
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ТЕКСТ */
 p, h1, h2, h3, li {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.15);
 }
 
-/* Контейнер */
+/* КОНТЕЙНЕР */
 .container {
     width: 100%;
     max-width: 1100px;
@@ -36,7 +46,7 @@ p, h1, h2, h3, li {
     padding: 0 15px;
 }
 
-/* Header */
+/* HEADER */
 header {
     background: rgba(0, 128, 128, 0.85);
     color: white;
@@ -49,25 +59,6 @@ nav {
     align-items: center;
 }
 
-/* Логотип */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 28px;
-    font-weight: bold;
-    max-height: 60px;
-    overflow: hidden;
-}
-
-.logo-icon {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-/* Навигация */
 nav ul {
     list-style: none;
     display: flex;
@@ -85,13 +76,26 @@ nav a:hover {
     color: #aee0e0;
 }
 
-/* Hero */
+/* LOGO */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo-icon {
+    height: 50px;
+    width: auto;
+}
+
+/* HERO */
 .hero {
     padding: 60px 20px;
     text-align: center;
     max-width: 900px;
     margin: 0 auto;
-    color: #004d4d;
 }
 
 .hero h1 {
@@ -102,11 +106,11 @@ nav a:hover {
 .hero p {
     font-size: 18px;
     max-width: 700px;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 20px;
     line-height: 1.5;
 }
 
-/* Кнопка */
+/* КНОПКА */
 .btn {
     display: inline-block;
     padding: 12px 30px;
@@ -122,10 +126,10 @@ nav a:hover {
     background: #33cccc;
 }
 
-/* Секции */
+/* СЕКЦИИ */
 .section {
     padding: 60px 20px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.85);
     border-radius: 15px;
     margin: 20px 0;
 }
@@ -136,18 +140,18 @@ nav a:hover {
     font-size: 32px;
 }
 
-/* Большие изображения */
+/* ГЛАВНАЯ КАРТИНКА */
 .section-img {
     display: block;
     width: 100%;
     max-width: 800px;
-    height: auto;
+    height: 400px;
+    object-fit: cover;
     border-radius: 10px;
     margin: 20px auto;
-    object-fit: cover;
 }
 
-/* ===== ГАЛЕРЕЯ (НОВОЕ) ===== */
+/* ГАЛЕРЕЯ */
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -158,20 +162,18 @@ nav a:hover {
 
 .gallery img {
     width: 100%;
-    height: 220px;
+    height: 230px;
     object-fit: cover;
     border-radius: 12px;
-    transition: all 0.4s ease;
-    cursor: pointer;
+    transition: 0.3s ease;
 }
 
-/* Красивый hover */
 .gallery img:hover {
-    transform: scale(1.07);
+    transform: scale(1.05);
     box-shadow: 0 10px 25px rgba(0, 128, 128, 0.4);
 }
 
-/* Карточки */
+/* КАРТОЧКИ */
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -183,38 +185,11 @@ nav a:hover {
     background: rgba(0, 179, 179, 0.15);
     border-radius: 15px;
     padding: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     width: 300px;
-    min-height: 380px;
-    justify-content: flex-start;
-}
-
-.card img {
-    width: 280px;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: scale(0.95);
-    transition: all 0.8s ease;
-}
-
-.card.show img {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.card h3, .card p {
     text-align: center;
-    color: #004d4d;
 }
 
-/* Footer */
+/* FOOTER */
 footer {
     background: rgba(0, 128, 128, 0.85);
     color: white;
@@ -223,11 +198,11 @@ footer {
     margin-top: 60px;
 }
 
-/* Fade-in */
+/* АНИМАЦИЯ */
 .fade-in {
     opacity: 0;
-    transform: translateY(30px);
-    transition: 1s ease-out;
+    transform: translateY(20px);
+    transition: 0.8s ease;
 }
 
 .fade-in.show {
@@ -235,68 +210,18 @@ footer {
     transform: translateY(0);
 }
 
-/* Карта */
-.map {
-    width: 100%;
-    height: 400px;
-    border-radius: 15px;
-    border: none;
-}
-
-/* Кнопка Наверх */
-#topBtn {
-    display: none;
-    position: fixed;
-    bottom: 40px;
-    right: 40px;
-    z-index: 99;
-    font-size: 18px;
-    border: none;
-    outline: none;
-    background-color: #00b3b3;
-    color: white;
-    cursor: pointer;
-    padding: 12px 18px;
-    border-radius: 50px;
-    transition: 0.3s;
-}
-
-#topBtn:hover {
-    background-color: #33cccc;
-}
-
-/* Адаптация */
+/* АДАПТАЦИЯ */
 @media (max-width: 600px) {
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .card {
-        width: 90%;
-        min-height: auto;
-    }
-
-    .card img {
-        width: 100%;
-        height: auto;
-    }
-
-    .logo {
-        font-size: 24px;
-        max-height: 40px;
-    }
-
-    .logo-icon {
-        height: 100%;
-        width: auto;
-    }
-
-    /* Галерея на телефоне */
     .gallery {
         grid-template-columns: 1fr;
     }
 
-    .gallery img {
-        height: auto;
+    .section-img {
+        height: 250px;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
     }
 }
