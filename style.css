@@ -1,18 +1,28 @@
+/* ===== ОБЩИЕ СТИЛИ ===== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
 }
 
 body {
-    background: url('images/baikal_background.jpg') no-repeat center center fixed;
+    background: url('images/baikal_summer.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #003f3f;
+    color: #1f3d2b;
 }
 
-/* ❌ УБРАЛИ МУТНУЮ ПЛЁНКУ (это тебя и ломало) */
-/* body::before удалён полностью */
+/* затемнение фона для читаемости */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 50, 30, 0.25);
+    z-index: -1;
+}
 
 /* контейнер */
 .container {
@@ -21,9 +31,9 @@ body {
     padding: 0 15px;
 }
 
-/* ===== HEADER (чёткий, без размытия) ===== */
+/* ===== HEADER ===== */
 header {
-    background: rgba(0, 128, 128, 0.95);
+    background: rgba(60, 140, 90, 0.95);
     padding: 18px 0;
     color: white;
 }
@@ -47,22 +57,24 @@ nav a {
 }
 
 nav a:hover {
-    color: #cfffff;
+    color: #d9ffe6;
 }
 
 .logo-icon {
     height: 50px;
 }
 
-/* ===== HERO (главный блок) ===== */
+/* ===== HERO (главная страница) ===== */
 .hero {
-    padding: 80px 20px;
+    padding: 100px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
     text-align: left;
     color: white;
 }
 
 .hero h1 {
-    font-size: 44px;
+    font-size: 46px;
     margin-bottom: 10px;
 }
 
@@ -73,19 +85,25 @@ nav a:hover {
 
 .btn {
     display: inline-block;
-    margin-top: 15px;
+    margin-top: 20px;
     padding: 12px 26px;
-    background: #00b3b3;
+    background: #6fcf97;
     color: white;
     text-decoration: none;
     border-radius: 25px;
+    font-weight: 600;
 }
 
-/* ===== СЕКЦИИ (ЧИСТЫЙ СВЕТЛЫЙ БЛОК БЕЗ МУТИ) ===== */
+.btn:hover {
+    background: #57b87d;
+}
+
+/* ===== СЕКЦИИ ===== */
 .section {
     margin: 40px 0;
     padding: 50px 20px;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(2px);
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
@@ -93,10 +111,10 @@ nav a:hover {
 .section h2 {
     text-align: center;
     margin-bottom: 30px;
-    color: #006666;
+    color: #2f6f4e;
 }
 
-/* ===== ГЛАВНАЯ КАРТИНКА ===== */
+/* ===== КАРТИНКА ===== */
 .section-img {
     width: 100%;
     max-width: 800px;
@@ -107,7 +125,7 @@ nav a:hover {
     border-radius: 12px;
 }
 
-/* ===== ГАЛЕРЕЯ (чистая, не мутная) ===== */
+/* ===== ГАЛЕРЕЯ ===== */
 .gallery {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -128,7 +146,7 @@ nav a:hover {
     transform: scale(1.03);
 }
 
-/* ===== КАРТОЧКИ (ЧЁТКИЕ, НЕ РАЗМАЗАННЫЕ) ===== */
+/* ===== КАРТОЧКИ ===== */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -140,12 +158,14 @@ nav a:hover {
     border-radius: 16px;
     padding: 15px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-
     min-height: 380px;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card img {
@@ -157,7 +177,7 @@ nav a:hover {
 
 .card h3 {
     margin-top: 10px;
-    color: #006666;
+    color: #2f6f4e;
 }
 
 .card p {
@@ -165,14 +185,9 @@ nav a:hover {
     color: #333;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    transition: 0.3s;
-}
-
 /* ===== FOOTER ===== */
 footer {
-    background: rgba(0, 128, 128, 0.95);
+    background: rgba(60, 140, 90, 0.95);
     color: white;
     text-align: center;
     padding: 20px;
