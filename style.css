@@ -12,7 +12,7 @@ body {
     color: #1f3d2b;
 }
 
-/* затемнение фона */
+/* затемнение + глубина фона */
 body::before {
     content: "";
     position: fixed;
@@ -20,7 +20,10 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 50, 30, 0.25);
+    background: linear-gradient(
+        rgba(0, 50, 30, 0.35),
+        rgba(0, 50, 30, 0.15)
+    );
     z-index: -1;
 }
 
@@ -31,17 +34,17 @@ body::before {
     padding: 0 15px;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (УЛУЧШЕННЫЙ) ===== */
 header {
-    background: rgba(60, 140, 90, 0.95);
-    padding: 12px 0;
-    color: white;
-    backdrop-filter: blur(8px);
+    background: rgba(60, 140, 90, 0.75);
+    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 1000;
+    padding: 10px 0;
 }
 
+/* навигация */
 nav {
     display: flex;
     justify-content: space-between;
@@ -49,25 +52,6 @@ nav {
     gap: 20px;
 }
 
-/* логотип-блок */
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-/* ===== ЛОГОТИП (большой, но стабильный) ===== */
-.logo-icon {
-    height: 110px;   /* увеличено, но без ломания */
-    width: auto;
-    display: block;
-    transition: 0.3s ease;
-}
-
-.logo-icon:hover {
-    transform: scale(1.05);
-}
-
-/* меню */
 nav ul {
     list-style: none;
     display: flex;
@@ -79,62 +63,78 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    transition: 0.3s;
 }
 
 nav a:hover {
     color: #d9ffe6;
 }
 
-/* ===== HERO ===== */
+/* ===== ЛОГОТИП (СБАЛАНСИРОВАННЫЙ) ===== */
+.logo-icon {
+    height: 100px;
+    width: auto;
+    display: block;
+    transition: 0.3s ease;
+}
+
+.logo-icon:hover {
+    transform: scale(1.05);
+}
+
+/* ===== HERO (ВАУ СТИЛЬ) ===== */
 .hero {
-    padding: 100px 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: left;
+    padding: 140px 20px;
+    text-align: center;
     color: white;
 }
 
 .hero h1 {
-    font-size: 46px;
+    font-size: 56px;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
 .hero p {
-    font-size: 18px;
-    max-width: 600px;
+    font-size: 20px;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
 }
 
 /* кнопка */
 .btn {
     display: inline-block;
-    margin-top: 20px;
-    padding: 12px 26px;
+    margin-top: 25px;
+    padding: 12px 28px;
     background: #6fcf97;
     color: white;
     text-decoration: none;
-    border-radius: 25px;
+    border-radius: 30px;
     font-weight: 600;
     transition: 0.3s;
 }
 
 .btn:hover {
     background: #57b87d;
+    transform: scale(1.05);
 }
 
-/* ===== СЕКЦИИ ===== */
+/* ===== СЕКЦИИ (ПРЕМИУМ) ===== */
 .section {
-    margin: 40px 0;
-    padding: 50px 20px;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(2px);
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    margin: 50px 0;
+    padding: 60px 25px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
 .section h2 {
     text-align: center;
     margin-bottom: 30px;
     color: #2f6f4e;
+    font-size: 32px;
 }
 
 /* ===== КАРТИНКА ===== */
@@ -145,7 +145,7 @@ nav a:hover {
     object-fit: cover;
     display: block;
     margin: 20px auto;
-    border-radius: 12px;
+    border-radius: 14px;
 }
 
 /* ===== ГАЛЕРЕЯ ===== */
@@ -161,15 +161,16 @@ nav a:hover {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    border-radius: 12px;
-    transition: 0.25s ease;
+    border-radius: 14px;
+    transition: 0.3s;
 }
 
 .gallery img:hover {
-    transform: scale(1.03);
+    transform: scale(1.06);
+    filter: brightness(1.1);
 }
 
-/* ===== КАРТОЧКИ ===== */
+/* ===== КАРТОЧКИ (УЛУЧШЕННЫЕ) ===== */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -177,18 +178,16 @@ nav a:hover {
 }
 
 .card {
-    background: white;
-    border-radius: 16px;
-    padding: 15px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    display: flex;
-    flex-direction: column;
-    min-height: 380px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.18);
 }
 
 .card img {
@@ -199,7 +198,7 @@ nav a:hover {
 }
 
 .card h3 {
-    margin-top: 10px;
+    margin-top: 12px;
     color: #2f6f4e;
 }
 
@@ -210,7 +209,7 @@ nav a:hover {
 
 /* ===== FOOTER ===== */
 footer {
-    background: rgba(60, 140, 90, 0.95);
+    background: rgba(60, 140, 90, 0.9);
     color: white;
     text-align: center;
     padding: 20px;
@@ -234,10 +233,10 @@ footer {
     }
 
     .hero h1 {
-        font-size: 32px;
+        font-size: 34px;
     }
 
     .logo-icon {
-        height: 90px;
+        height: 80px;
     }
 }
