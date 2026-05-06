@@ -361,3 +361,26 @@ footer {
 .info-card {
     min-height: 90px;
 }
+/* ===== ГЛОБАЛЬНОЕ ОКРУГЛЕНИЕ ВСЕХ КАРТИНОК ===== */
+img {
+    border-radius: 16px;
+}
+
+/* чтобы hover-эффекты не конфликтовали */
+.section-img,
+.card img,
+.gallery img {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* чуть красивее карточки */
+.card {
+    border-radius: 18px;
+}
+
+/* карта тоже в стиль сайта */
+.map,
+iframe {
+    border-radius: 18px;
+}
