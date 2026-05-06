@@ -12,7 +12,7 @@ body {
     color: #1f3d2b;
 }
 
-/* затемнение фона для читаемости */
+/* затемнение фона */
 body::before {
     content: "";
     position: fixed;
@@ -60,11 +60,19 @@ nav a:hover {
     color: #d9ffe6;
 }
 
+/* 🔥 ИСПРАВЛЕНИЕ ЛОГОТИПА */
 .logo-icon {
-    height: 50px;
+    height: 75px;   /* БЫЛО 50px — стало больше */
+    width: auto;
+    display: block;
+    transition: 0.3s ease;
 }
 
-/* ===== HERO (главная страница) ===== */
+.logo-icon:hover {
+    transform: scale(1.05);
+}
+
+/* ===== HERO ===== */
 .hero {
     padding: 100px 20px;
     max-width: 1100px;
@@ -92,6 +100,7 @@ nav a:hover {
     text-decoration: none;
     border-radius: 25px;
     font-weight: 600;
+    transition: 0.3s;
 }
 
 .btn:hover {
