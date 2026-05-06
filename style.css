@@ -323,3 +323,41 @@ footer {
 .card:hover {
     z-index: 2;
 }
+.route-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* карточки региона — делаем стабильными */
+.info-card {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+/* hover не ломает сетку */
+.info-card:hover {
+    transform: translateY(-6px);
+}
+
+/* текст внутри */
+.info-card h4 {
+    color: #2f6f4e;
+    margin-bottom: 6px;
+}
+
+.info-card p {
+    font-weight: 600;
+    color: #333;
+}
+
+/* защита от "исчезновения" */
+.info-card {
+    min-height: 90px;
+}
