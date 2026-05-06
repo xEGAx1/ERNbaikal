@@ -285,3 +285,41 @@ footer {
         height: 60px;
     }
 }
+/* ===== ФИКС КАРТОЧЕК (СТАБИЛИЗАЦИЯ ВЕРСТКИ) ===== */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+/* защита от “съезжания” контента */
+.card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* картинка всегда одинаковая по высоте */
+.card img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* текст внутри не ломает карточку */
+.card h3 {
+    line-height: 1.3;
+}
+
+.card p {
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+/* чтобы hover не ломал сетку */
+.card:hover {
+    z-index: 2;
+}
