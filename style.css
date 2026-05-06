@@ -19,7 +19,7 @@ body::before {
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.2); /* прозрачность уменьшена для яркости */
+    background-color: rgba(255, 255, 255, 0.2);
     z-index: -1;
 }
 
@@ -38,7 +38,7 @@ p, h1, h2, h3, li {
 
 /* Header */
 header {
-    background: rgba(0, 128, 128, 0.85); /* бирюзовый с прозрачностью */
+    background: rgba(0, 128, 128, 0.85);
     color: white;
     padding: 20px 0;
 }
@@ -51,19 +51,19 @@ nav {
 
 /* Логотип */
 .logo {
-    display: flex;           
-    align-items: center;     
-    gap: 10px;               
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 28px;
     font-weight: bold;
-    max-height: 60px;        
-    overflow: hidden;        
+    max-height: 60px;
+    overflow: hidden;
 }
 
 .logo-icon {
-    height: 100%;            
+    height: 100%;
     width: auto;
-    object-fit: contain;     
+    object-fit: contain;
     display: block;
 }
 
@@ -136,7 +136,7 @@ nav a:hover {
     font-size: 32px;
 }
 
-/* Большие изображения на внутренних страницах маршрутов */
+/* Большие изображения */
 .section-img {
     display: block;
     width: 100%;
@@ -147,7 +147,31 @@ nav a:hover {
     object-fit: cover;
 }
 
-/* Карточки на странице маршрутов */
+/* ===== ГАЛЕРЕЯ (НОВОЕ) ===== */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+.gallery img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+/* Красивый hover */
+.gallery img:hover {
+    transform: scale(1.07);
+    box-shadow: 0 10px 25px rgba(0, 128, 128, 0.4);
+}
+
+/* Карточки */
 .cards {
     display: flex;
     flex-wrap: wrap;
@@ -221,7 +245,7 @@ footer {
 
 /* Кнопка Наверх */
 #topBtn {
-    display: none; 
+    display: none;
     position: fixed;
     bottom: 40px;
     right: 40px;
@@ -241,7 +265,7 @@ footer {
     background-color: #33cccc;
 }
 
-/* Адаптация под телефон */
+/* Адаптация */
 @media (max-width: 600px) {
     .hero h1 {
         font-size: 30px;
@@ -266,6 +290,13 @@ footer {
         height: 100%;
         width: auto;
     }
+
+    /* Галерея на телефоне */
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery img {
+        height: auto;
+    }
 }
-
-
