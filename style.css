@@ -10,9 +10,9 @@ body {
     background: url('images/baikal_summer.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #1f3d2b;
-    padding-top: 90px;
 }
 
+/* затемнение + глубина фона */
 body::before {
     content: "";
     position: fixed;
@@ -36,22 +36,14 @@ body::before {
 
 /* ===== HEADER ===== */
 header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
     background: rgba(60, 140, 90, 0.80);
     backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
     z-index: 1000;
     padding: 6px 0;
-    transition: transform 0.3s ease;
 }
 
-header.hide {
-    transform: translateY(-100%);
-}
-
-/* ===== NAV ===== */
 nav {
     display: flex;
     justify-content: space-between;
@@ -70,23 +62,31 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
+    transition: 0.3s;
+    position: relative;
 }
 
 nav a:hover {
     color: #d9ffe6;
 }
 
+/* активная страница */
 nav a.active {
     color: #b6ffe0;
     border-bottom: 2px solid #b6ffe0;
     padding-bottom: 3px;
 }
 
-/* ===== ЛОГО ===== */
+/* ===== ЛОГОТИП ===== */
 .logo-icon {
     height: 70px;
     width: auto;
     display: block;
+    transition: 0.3s ease;
+}
+
+.logo-icon:hover {
+    transform: scale(1.05);
 }
 
 /* ===== HERO ===== */
@@ -98,32 +98,44 @@ nav a.active {
 
 .hero h1 {
     font-size: 54px;
+    font-weight: 700;
     margin-bottom: 10px;
+    letter-spacing: 1px;
 }
 
 .hero p {
     font-size: 20px;
     max-width: 700px;
     margin: 0 auto;
+    opacity: 0.9;
 }
 
-/* ===== BUTTON ===== */
+/* кнопка */
 .btn {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 28px;
     background: #6fcf97;
     color: white;
-    border-radius: 30px;
     text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-/* ===== SECTION ===== */
+.btn:hover {
+    background: #57b87d;
+    transform: scale(1.05);
+}
+
+/* ===== СЕКЦИИ ===== */
 .section {
     margin: 50px 0;
     padding: 60px 25px;
-    background: rgba(255,255,255,0.92);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(5px);
     border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
 .section h2 {
@@ -133,73 +145,95 @@ nav a.active {
     font-size: 32px;
 }
 
-/* ===== CARDS (ГЛАВНЫЙ FIX) ===== */
-.cards {
+/* ===== КАРТИНКА ===== */
+.section-img {
+    width: 100%;
+    max-width: 800px;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    margin: 20px auto;
+    border-radius: 14px;
+    transition: 0.4s ease;
+}
+
+.section-img:hover {
+    transform: scale(1.02);
+    filter: brightness(1.05);
+}
+
+/* ===== ГАЛЕРЕЯ ===== */
+.gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
-    align-items: stretch;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 800px;
+    margin: 30px auto;
 }
 
-/* ВАЖНО: фикс ширины */
-.card {
-    background: rgba(255,255,255,0.95);
-    border-radius: 18px;
-    padding: 20px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-}
-
-/* ВАЖНО: убираем растяжение картинок */
-.card img {
+.gallery img {
     width: 100%;
     height: 180px;
     object-fit: cover;
-    display: block;
-    border-radius: 12px;
+    border-radius: 14px;
+    transition: 0.3s ease;
 }
 
-/* ===== ROUTES FIX (ВАЖНО ДЛЯ ЛИСТВЯНКИ) ===== */
-.route-block,
+.gallery img:hover {
+    transform: scale(1.06);
+    filter: brightness(1.1);
+}
+
+/* ===== КАРТОЧКИ ===== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 22px;
+}
+
 .card {
-    max-width: 100%;
-    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    transition: 0.3s ease;
 }
 
-/* если на routes.html есть картинки без card */
-.route-block img {
-    width: 100%;
-    max-width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    border-radius: 12px;
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.18);
 }
 
 /* ===== MAP ===== */
-#map {
-    height: 550px;
+.map-wrapper {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 30px;
+    border-radius: 22px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.map {
     width: 100%;
-    margin-top: 20px;
-    border-radius: 15px;
-    overflow: hidden;
+    height: 420px;
+    border-radius: 18px;
+    border: none;
 }
 
 /* ===== FOOTER ===== */
 footer {
-    background: rgba(60,140,90,0.9);
+    background: rgba(60, 140, 90, 0.9);
     color: white;
     text-align: center;
     padding: 20px;
+    margin-top: 60px;
 }
 
-/* ===== FADE ===== */
+/* ===== FADE ANIMATION ===== */
 .fade-in {
     opacity: 0;
     transform: translateY(25px);
-    transition: 0.8s ease;
+    transition: all 0.8s ease;
 }
 
 .fade-in.show {
@@ -207,84 +241,153 @@ footer {
     transform: translateY(0);
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
-    .hero h1 { font-size: 34px; }
-    nav { flex-direction: column; gap: 10px; }
-}
-/* ===== FINAL FIX ДЛЯ СЛОМАННЫХ КАРТОЧЕК ===== */
-
-/* защита от глобального img */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* карточки всегда контейнер */
-.card {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-}
-
-/* нормальная фиксация изображений */
-.card img {
-    width: 100% !important;
-    height: 180px !important;
-    object-fit: cover !important;
-    display: block;
-    border-radius: 14px;
-}
-
-/* маршруты (если они такие же сломались) */
+/* ===== ROUTES ===== */
 .route-block {
-    max-width: 800px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 22px;
     margin: 18px auto;
-    overflow: hidden;
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+    max-width: 800px;
+    transition: 0.3s;
 }
 
-.route-block img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    display: block;
-    border-radius: 14px;
+.route-block:hover {
+    transform: translateY(-5px);
 }
-/* ===== ВОССТАНОВЛЕНИЕ НОРМАЛЬНОГО ВИДА КАРТОЧЕК ===== */
 
-/* карточки обратно как контейнеры */
+.route-block h3 {
+    color: #2f6f4e;
+    margin-bottom: 10px;
+}
+
+/* ===== ADAPTIVE ===== */
+@media (max-width: 600px) {
+
+    nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .section-img {
+        height: 240px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .logo-icon {
+        height: 60px;
+    }
+}
+
+/* ===== ФИКС КАРТОЧЕК (СТАБИЛИЗАЦИЯ ВЕРСТКИ) ===== */
+
 .cards {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    align-items: start;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 22px;
+    align-items: stretch;
 }
 
-/* если у тебя был "1 сверху + 4 снизу" — делаем крупную первую */
-.cards .card:first-child {
-    grid-column: 1 / -1;
-}
-
-/* возвращаем нормальный вид карточек */
 .card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 18px;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.card h3 {
+    line-height: 1.3;
+}
+
+.card p {
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.card:hover {
+    z-index: 2;
+}
+
+.route-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 18px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    transition: 0.3s ease;
     display: flex;
     flex-direction: column;
 }
 
-/* КЛЮЧЕВО: НЕ ЛОМАТЬ КОМПОЗИЦИЮ КАРТИНОК */
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    display: block;
-    border-radius: 14px;
+.info-card:hover {
+    transform: translateY(-6px);
 }
 
-/* большая первая карточка */
-.cards .card:first-child img {
-    height: 320px;
+.info-card h4 {
+    color: #2f6f4e;
+    margin-bottom: 6px;
+}
+
+.info-card p {
+    font-weight: 600;
+    color: #333;
+}
+
+.info-card {
+    min-height: 90px;
+}
+
+/* ===== ГЛОБАЛЬНОЕ ОКРУГЛЕНИЕ ВСЕХ КАРТИНОК ===== */
+
+img {
+    border-radius: 16px;
+}
+
+.section-img,
+.card img,
+.gallery img {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.card {
+    border-radius: 18px;
+}
+
+.map,
+iframe {
+    border-radius: 18px;
+}
+
+#map {
+    height: 550px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.map-description {
+    text-align: center;
+    margin-bottom: 20px;
 }
