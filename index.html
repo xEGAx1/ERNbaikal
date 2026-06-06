@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>ERN Baikal — Путешествия по Байкалу</title>
+
     <base href="/ERNbaikal/">
 
     <link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <!-- MAPLIBRE (ВМЕСТО LEAFLET) -->
+    <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+    <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 </head>
 
 <body>
@@ -19,7 +21,7 @@
 
             <div class="logo">
                 <a href="index.html">
-                    <img src="images/ChatGPT2.png" alt="Байкал" class="logo-icon">
+                    <img src="images/ChatGPT2.png" class="logo-icon">
                 </a>
             </div>
 
@@ -45,45 +47,12 @@
 
 <section class="section">
     <div class="container">
-
-        <h2>Почему Байкал?</h2>
-
-        <div class="cards">
-
-            <div class="card fade-in">
-                <img src="images/baikal_ice.jpg" alt="Байкал">
-                <h3>Самое глубокое озеро</h3>
-                <p>Байкал — самое глубокое озеро в мире и крупнейший запас пресной воды.</p>
-            </div>
-
-            <div class="card fade-in">
-                <img src="images/baikal_mountains.jpg" alt="Горы Байкала">
-                <h3>Уникальная природа</h3>
-                <p>Горы, леса и уникальная флора делают регион идеальным для туризма.</p>
-            </div>
-
-            <div class="card fade-in">
-                <img src="images/listvyanka.jpg" alt="Маршруты">
-                <h3>Маршруты для всех</h3>
-                <p>Активный отдых, семейные экскурсии, экологический туризм.</p>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-<section class="section">
-    <div class="container">
-
         <h2>Интерактивная карта Байкала</h2>
-
         <p class="map-description">
-            Выберите интересующее место на карте и перейдите к маршруту.
+            Выберите место и перейдите к маршруту
         </p>
 
-        <div id="map"></div>
-
+        <div id="map" style="height: 550px; border-radius: 15px;"></div>
     </div>
 </section>
 
@@ -91,68 +60,91 @@
     <p>© 2026 ERN Baikal — Туристический портал</p>
 </footer>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script>
-const map = L.map('map').setView([53.2, 106.5], 7);
+if (document.getElementById('map')) {
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap'
-}).addTo(map);
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: {
+            version: 8,
+            sources: {
+                osm: {
+                    type: "raster",
+                    tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+                    tileSize: 256
+                }
+            },
+            layers: [{
+                id: "osm",
+                type: "raster",
+                source: "osm"
+            }]
+        },
+        center: [105.0, 52.5],
+        zoom: 6.5
+    });
 
-const places = [
-    {
-        name: "Листвянка",
-        coords: [51.87, 104.88],
-        link: "listvyanka.html",
-        desc: "Посёлок у истока Ангары"
-    },
-    {
-        name: "Ольхон",
-        coords: [53.15, 107.34],
-        link: "olkhon.html",
-        desc: "Самый большой остров Байкала"
-    },
-    {
-        name: "КБЖД",
-        coords: [51.75, 104.64],
-        link: "kbzhd.html",
-        desc: "Кругобайкальская железная дорога"
-    },
-    {
-        name: "Большое Голоустное",
-        coords: [52.04, 105.40],
-        link: "bolshoe_golousnoe.html",
-        desc: "Тихий природный посёлок"
-    },
-    {
-        name: "Южное Прибайкалье",
-        coords: [51.60, 103.90],
-        link: "yuzhnoe_pribaikalye.html",
-        desc: "Горы, Байкальск и природа"
-    }
-];
+    const places = [
+        {
+            name: "Листвянка",
+            coords: [104.88, 51.87],
+            link: "listvyanka.html",
+            desc: "Посёлок у истока Ангары"
+        },
+        {
+            name: "Ольхон",
+            coords: [107.34, 53.15],
+            link: "olkhon.html",
+            desc: "Самый большой остров Байкала"
+        },
+        {
+            name: "КБЖД",
+            coords: [104.05, 51.75], // ✔ ИСПРАВЛЕНО
+            link: "kbzhd.html",
+            desc: "Кругобайкальская железная дорога"
+        },
+        {
+            name: "Большое Голоустное",
+            coords: [105.30, 52.04],
+            link: "bolshoe_golousnoe.html",
+            desc: "Тихий природный посёлок"
+        },
+        {
+            name: "Южное Прибайкалье",
+            coords: [104.15, 51.85],
+            link: "yuzhnoe_pribaikalye.html",
+            desc: "Горы, Байкальск и природа"
+        }
+    ];
 
-places.forEach(p => {
-    L.marker(p.coords).addTo(map)
-    .bindPopup(`
-        <div style="min-width:180px">
-            <b>${p.name}</b><br>
-            <small>${p.desc}</small><br><br>
-            <a href="${p.link}" style="
-                display:inline-block;
-                padding:6px 10px;
-                background:#2f6f4e;
-                color:white;
-                border-radius:8px;
-                text-decoration:none;
-                font-size:13px;
-            ">
-                Подробнее
-            </a>
-        </div>
-    `);
-});
+    places.forEach(p => {
+
+        const el = document.createElement('div');
+        el.style.width = "12px";
+        el.style.height = "12px";
+        el.style.borderRadius = "50%";
+        el.style.background = "#2f6f4e";
+        el.style.border = "2px solid white";
+
+        new maplibregl.Marker(el)
+            .setLngLat(p.coords)
+            .setPopup(
+                new maplibregl.Popup({ offset: 25 }).setHTML(`
+                    <b>${p.name}</b><br>
+                    <small>${p.desc}</small><br><br>
+                    <a href="${p.link}" style="
+                        display:inline-block;
+                        padding:6px 10px;
+                        background:#2f6f4e;
+                        color:#fff;
+                        border-radius:8px;
+                        text-decoration:none;
+                    ">Подробнее</a>
+                `)
+            )
+            .addTo(map);
+    });
+}
 </script>
 
 <script src="script.js"></script>
