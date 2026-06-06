@@ -1,3 +1,4 @@
+
 // ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ =====
 const items = document.querySelectorAll('.fade-in');
 
@@ -23,38 +24,33 @@ topBtn.id = "topBtn";
 topBtn.innerText = "↑ Наверх";
 document.body.appendChild(topBtn);
 
-topBtn.style.position = "fixed";
-topBtn.style.bottom = "25px";
-topBtn.style.right = "25px";
-topBtn.style.padding = "10px 14px";
-topBtn.style.border = "none";
-topBtn.style.borderRadius = "12px";
-topBtn.style.background = "#2f6f4e";
-topBtn.style.color = "white";
-topBtn.style.cursor = "pointer";
-topBtn.style.display = "none";
-topBtn.style.boxShadow = "0 10px 25px rgba(0,0,0,0.2)";
-topBtn.style.zIndex = "9999";
+Object.assign(topBtn.style, {
+    position: "fixed",
+    bottom: "25px",
+    right: "25px",
+    padding: "10px 14px",
+    border: "none",
+    borderRadius: "12px",
+    background: "#2f6f4e",
+    color: "white",
+    cursor: "pointer",
+    display: "none",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.2)",
+    zIndex: "9999"
+});
 
 function scrollFunction() {
-    if (window.scrollY > 300) {
-        topBtn.style.display = "block";
-    } else {
-        topBtn.style.display = "none";
-    }
+    topBtn.style.display = window.scrollY > 300 ? "block" : "none";
 }
 
 window.addEventListener('scroll', scrollFunction);
 
 topBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 
-// ===== ШАПКА (СТАБИЛЬНОЕ ПОВЕДЕНИЕ) =====
+// ===== ШАПКА =====
 let lastScroll = window.scrollY;
 const header = document.querySelector('header');
 
@@ -69,7 +65,7 @@ window.addEventListener('scroll', () => {
 
     if (currentScroll > lastScroll) {
         header.classList.add('hide');
-    } else if (currentScroll < lastScroll) {
+    } else {
         header.classList.remove('hide');
     }
 
@@ -77,10 +73,10 @@ window.addEventListener('scroll', () => {
 });
 
 
-// ===== ИНТЕРАКТИВНАЯ КАРТА БАЙКАЛА =====
+// ===== ИНТЕРАКТИВНАЯ КАРТА БАЙКАЛА (ИСПРАВЛЕННАЯ ГЕОГРАФИЯ) =====
 if (document.getElementById('map')) {
 
-    const map = L.map('map').setView([53.0, 105.0], 7);
+    const map = L.map('map').setView([52.8, 105.3], 7);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap'
@@ -90,26 +86,31 @@ if (document.getElementById('map')) {
         {
             name: "Листвянка",
             coords: [51.85, 104.87],
+            desc: "Главный туристический посёлок на Байкале.",
             link: "routes.html#listvyanka"
         },
         {
             name: "Ольхон",
             coords: [53.15, 107.34],
+            desc: "Самый известный остров Байкала.",
             link: "routes.html#olkhon"
         },
         {
             name: "КБЖД",
-            coords: [51.72, 104.51],
+            coords: [51.78, 104.65], // ✔ ИСПРАВЛЕНО (была в воде)
+            desc: "Кругобайкальская железная дорога вдоль южного берега Байкала.",
             link: "routes.html#kbzhd"
         },
         {
             name: "Большое Голоустное",
             coords: [52.04, 105.40],
+            desc: "Тихое место для отдыха и природы.",
             link: "routes.html#goloustnoe"
         },
         {
             name: "Южное Прибайкалье",
-            coords: [51.65, 103.70],
+            coords: [51.60, 103.90], // ✔ ИСПРАВЛЕНО (была в воде)
+            desc: "Байкальск, горы и живописные маршруты.",
             link: "routes.html#south_baikal"
         }
     ];
@@ -118,12 +119,23 @@ if (document.getElementById('map')) {
         const marker = L.marker(p.coords).addTo(map);
 
         marker.bindPopup(`
-            <b>${p.name}</b><br>
-            <a href="${p.link}">Перейти к маршруту</a>
+            <div style="min-width:180px">
+                <b>${p.name}</b><br>
+                <p style="margin:6px 0;">${p.desc}</p>
+                <a href="${p.link}"
+                   style="
+                       display:inline-block;
+                       margin-top:6px;
+                       padding:6px 10px;
+                       background:#2f6f4e;
+                       color:#fff;
+                       border-radius:8px;
+                       text-decoration:none;
+                       font-size:13px;
+                   ">
+                   Подробнее
+                </a>
+            </div>
         `);
-
-        marker.on('click', () => {
-            window.location.href = p.link;
-        });
     });
 }
