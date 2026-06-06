@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title>ERN Baikal — Путешествия по Байкалу</title>
 
-    <!-- ❌ УДАЛЕНО: base href (ломал пути и 404) -->
-
     <link rel="stylesheet" href="style.css">
 
     <!-- MAPLIBRE -->
@@ -48,6 +46,7 @@
 <section class="section">
     <div class="container">
         <h2>Интерактивная карта Байкала</h2>
+
         <p class="map-description">
             Выберите место и перейдите к маршруту
         </p>
@@ -81,7 +80,7 @@ if (document.getElementById('map')) {
             }]
         },
         center: [105.0, 52.5],
-        zoom: 6.5
+        zoom: 6.3
     });
 
     const places = [
@@ -117,6 +116,8 @@ if (document.getElementById('map')) {
         }
     ];
 
+    const bounds = [];
+
     places.forEach(p => {
 
         const el = document.createElement('div');
@@ -143,6 +144,13 @@ if (document.getElementById('map')) {
                 `)
             )
             .addTo(map);
+
+        bounds.push(p.coords);
+    });
+
+    map.fitBounds(bounds, {
+        padding: 80,
+        maxZoom: 7
     });
 }
 </script>
