@@ -411,3 +411,27 @@ iframe {
     opacity: 1 !important;
     transform: none !important;
 }
+/* ===== FIX: карточки и fade-in ===== */
+
+.fade-in {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.fade-in.show {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.cards {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+    gap: 22px !important;
+}
+
+.card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
