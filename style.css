@@ -308,3 +308,33 @@ footer {
     object-fit: cover !important;
     display: block !important;
 }
+
+/* ===== FIX 1: карточки (НЕ ЛОМАЕТ ТВОЙ ДИЗАЙН) ===== */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+}
+
+/* ===== FIX 2: маршруты (lisvjanka.html и другие) ===== */
+/* именно это у тебя сейчас раздувает картинки на весь экран */
+
+.route-block img {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    border-radius: 14px;
+}
+
+/* ===== FIX 3: защита от глобальных img конфликтов ===== */
+/* если где-то есть img { width:100% } */
+
+.section img,
+.route-block img,
+.card img {
+    max-width: 100%;
+}
