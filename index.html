@@ -13,7 +13,6 @@
 
 <body>
 
-<!-- ===== HEADER (ТОЛЬКО НАВИГАЦИЯ) ===== -->
 <header>
     <div class="container">
         <nav>
@@ -36,18 +35,14 @@
     </div>
 </header>
 
-<!-- ===== HERO (ВЫНЕСЕН ИЗ HEADER) ===== -->
 <section class="hero fade-in">
     <div class="container">
         <h1>Открой для себя Байкал</h1>
-        <p>
-            Лучшие маршруты, достопримечательности и идеи для путешествий по Иркутской области.
-        </p>
+        <p>Лучшие маршруты, достопримечательности и идеи для путешествий по Иркутской области.</p>
         <a class="btn" href="routes.html">Выбрать маршрут</a>
     </div>
 </section>
 
-<!-- ===== СЕКЦИЯ ПРИЧИНЫ ===== -->
 <section class="section">
     <div class="container">
 
@@ -78,14 +73,13 @@
     </div>
 </section>
 
-<!-- ===== КАРТА ===== -->
 <section class="section">
     <div class="container">
 
         <h2>Интерактивная карта Байкала</h2>
 
         <p class="map-description">
-            Выберите интересующее место на карте и познакомьтесь с туристическими объектами.
+            Выберите интересующее место на карте и перейдите к маршруту.
         </p>
 
         <div id="map"></div>
@@ -93,38 +87,74 @@
     </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer>
     <p>© 2026 ERN Baikal — Туристический портал</p>
 </footer>
 
-<!-- ===== LEAFLET ===== -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-const map = L.map('map').setView([53.2, 107.5], 7);
+const map = L.map('map').setView([53.2, 106.5], 7);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-L.marker([51.85, 104.87]).addTo(map)
-.bindPopup('<b>Листвянка</b><br>Главный туристический посёлок.');
+const places = [
+    {
+        name: "Листвянка",
+        coords: [51.87, 104.88],
+        link: "listvyanka.html",
+        desc: "Посёлок у истока Ангары"
+    },
+    {
+        name: "Ольхон",
+        coords: [53.15, 107.34],
+        link: "olkhon.html",
+        desc: "Самый большой остров Байкала"
+    },
+    {
+        name: "КБЖД",
+        coords: [51.75, 104.64],
+        link: "kbzhd.html",
+        desc: "Кругобайкальская железная дорога"
+    },
+    {
+        name: "Большое Голоустное",
+        coords: [52.04, 105.40],
+        link: "bolshoe_golousnoe.html",
+        desc: "Тихий природный посёлок"
+    },
+    {
+        name: "Южное Прибайкалье",
+        coords: [51.60, 103.90],
+        link: "yuzhnoe_pribaikalye.html",
+        desc: "Горы, Байкальск и природа"
+    }
+];
 
-L.marker([53.15, 107.34]).addTo(map)
-.bindPopup('<b>Ольхон</b><br>Самый известный остров Байкала.');
-
-L.marker([51.75, 104.75]).addTo(map)
-.bindPopup('<b>КБЖД</b><br>Кругобайкальская железная дорога.');
-
-L.marker([52.04, 105.40]).addTo(map)
-.bindPopup('<b>Большое Голоустное</b><br>Место отдыха.');
-
-L.marker([51.60, 104.10]).addTo(map)
-.bindPopup('<b>Южное Прибайкалье</b><br>Живописные маршруты.');
+places.forEach(p => {
+    L.marker(p.coords).addTo(map)
+    .bindPopup(`
+        <div style="min-width:180px">
+            <b>${p.name}</b><br>
+            <small>${p.desc}</small><br><br>
+            <a href="${p.link}" style="
+                display:inline-block;
+                padding:6px 10px;
+                background:#2f6f4e;
+                color:white;
+                border-radius:8px;
+                text-decoration:none;
+                font-size:13px;
+            ">
+                Подробнее
+            </a>
+        </div>
+    `);
+});
 </script>
 
-<!-- ===== ТВОЙ JS ===== -->
 <script src="script.js"></script>
 
 </body>
