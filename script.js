@@ -12,13 +12,11 @@ if (document.getElementById('map')) {
                     attribution: "&copy; OpenStreetMap"
                 }
             },
-            layers: [
-                {
-                    id: "osm",
-                    type: "raster",
-                    source: "osm"
-                }
-            ]
+            layers: [{
+                id: "osm",
+                type: "raster",
+                source: "osm"
+            }]
         },
         center: [105.0, 52.5],
         zoom: 6.5
@@ -39,7 +37,7 @@ if (document.getElementById('map')) {
         },
         {
             name: "КБЖД",
-            coords: [103.64, 51.72],
+            coords: [104.05, 51.75],
             link: "routes/kbzhd.html",
             desc: "Кругобайкальская железная дорога"
         },
@@ -60,14 +58,13 @@ if (document.getElementById('map')) {
     places.forEach(p => {
 
         const el = document.createElement('div');
-        el.style.width = "14px";
-        el.style.height = "14px";
-        el.style.background = "#2f6f4e";
+        el.style.width = "12px";
+        el.style.height = "12px";
         el.style.borderRadius = "50%";
+        el.style.background = "#2f6f4e";
         el.style.border = "2px solid white";
-        el.style.cursor = "pointer";
 
-        const marker = new maplibregl.Marker(el)
+        new maplibregl.Marker(el)
             .setLngLat(p.coords)
             .setPopup(
                 new maplibregl.Popup({ offset: 25 })
