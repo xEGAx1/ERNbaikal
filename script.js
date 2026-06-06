@@ -54,29 +54,76 @@ topBtn.addEventListener('click', () => {
 });
 
 
-// ===== ШАПКА (СТАБИЛЬНОЕ ПОВЕДЕНИЕ, БЕЗ ПЕРЕКРЫТИЙ) =====
+// ===== ШАПКА (СТАБИЛЬНОЕ ПОВЕДЕНИЕ) =====
 let lastScroll = window.scrollY;
 const header = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    // всегда показываем в самом верху
     if (currentScroll <= 80) {
         header.classList.remove('hide');
         lastScroll = currentScroll;
         return;
     }
 
-    // скролл вниз → скрываем
     if (currentScroll > lastScroll) {
         header.classList.add('hide');
-    }
-
-    // скролл вверх → показываем
-    if (currentScroll < lastScroll) {
+    } else if (currentScroll < lastScroll) {
         header.classList.remove('hide');
     }
 
     lastScroll = currentScroll;
 });
+
+
+// ===== ИНТЕРАКТИВНАЯ КАРТА БАЙКАЛА =====
+if (document.getElementById('map')) {
+
+    const map = L.map('map').setView([53.0, 105.0], 7);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    const places = [
+        {
+            name: "Листвянка",
+            coords: [51.85, 104.87],
+            link: "routes.html#listvyanka"
+        },
+        {
+            name: "Ольхон",
+            coords: [53.15, 107.34],
+            link: "routes.html#olkhon"
+        },
+        {
+            name: "КБЖД",
+            coords: [51.72, 104.51],
+            link: "routes.html#kbzhd"
+        },
+        {
+            name: "Большое Голоустное",
+            coords: [52.04, 105.40],
+            link: "routes.html#goloustnoe"
+        },
+        {
+            name: "Южное Прибайкалье",
+            coords: [51.65, 103.70],
+            link: "routes.html#south_baikal"
+        }
+    ];
+
+    places.forEach(p => {
+        const marker = L.marker(p.coords).addTo(map);
+
+        marker.bindPopup(`
+            <b>${p.name}</b><br>
+            <a href="${p.link}">Перейти к маршруту</a>
+        `);
+
+        marker.on('click', () => {
+            window.location.href = p.link;
+        });
+    });
+}
