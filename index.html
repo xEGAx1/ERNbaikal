@@ -10,8 +10,10 @@
     <link rel="stylesheet"
           href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 </head>
+
 <body>
 
+<!-- ===== HEADER (ТОЛЬКО НАВИГАЦИЯ) ===== -->
 <header>
     <div class="container">
         <nav>
@@ -31,17 +33,21 @@
             </ul>
 
         </nav>
-
-        <div class="hero fade-in">
-            <h1>Открой для себя Байкал</h1>
-            <p>
-                Лучшие маршруты, достопримечательности и идеи для путешествий по Иркутской области.
-            </p>
-            <a class="btn" href="routes.html">Выбрать маршрут</a>
-        </div>
     </div>
 </header>
 
+<!-- ===== HERO (ВЫНЕСЕН ИЗ HEADER) ===== -->
+<section class="hero fade-in">
+    <div class="container">
+        <h1>Открой для себя Байкал</h1>
+        <p>
+            Лучшие маршруты, достопримечательности и идеи для путешествий по Иркутской области.
+        </p>
+        <a class="btn" href="routes.html">Выбрать маршрут</a>
+    </div>
+</section>
+
+<!-- ===== СЕКЦИЯ ПРИЧИНЫ ===== -->
 <section class="section">
     <div class="container">
 
@@ -52,25 +58,19 @@
             <div class="card fade-in">
                 <img src="images/baikal_ice.jpg" alt="Байкал">
                 <h3>Самое глубокое озеро</h3>
-                <p>
-                    Байкал — самое глубокое озеро в мире и крупнейший запас пресной воды.
-                </p>
+                <p>Байкал — самое глубокое озеро в мире и крупнейший запас пресной воды.</p>
             </div>
 
             <div class="card fade-in">
                 <img src="images/baikal_mountains.jpg" alt="Горы Байкала">
                 <h3>Уникальная природа</h3>
-                <p>
-                    Горы, леса и уникальная флора делают регион идеальным для туризма.
-                </p>
+                <p>Горы, леса и уникальная флора делают регион идеальным для туризма.</p>
             </div>
 
             <div class="card fade-in">
                 <img src="images/listvyanka.jpg" alt="Маршруты">
                 <h3>Маршруты для всех</h3>
-                <p>
-                    Активный отдых, семейные экскурсии, экологический туризм.
-                </p>
+                <p>Активный отдых, семейные экскурсии, экологический туризм.</p>
             </div>
 
         </div>
@@ -78,13 +78,14 @@
     </div>
 </section>
 
+<!-- ===== КАРТА ===== -->
 <section class="section">
     <div class="container">
 
         <h2>Интерактивная карта Байкала</h2>
 
         <p class="map-description">
-            Выберите интересующее место на карте и познакомьтесь с основными туристическими объектами региона.
+            Выберите интересующее место на карте и познакомьтесь с туристическими объектами.
         </p>
 
         <div id="map"></div>
@@ -92,52 +93,38 @@
     </div>
 </section>
 
+<!-- ===== FOOTER ===== -->
 <footer>
     <p>© 2026 ERN Baikal — Туристический портал</p>
 </footer>
 
+<!-- ===== LEAFLET ===== -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-
 const map = L.map('map').setView([53.2, 107.5], 7);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap'
 }).addTo(map);
 
-L.marker([51.85, 104.87])
-.addTo(map)
-.bindPopup(
-    '<b>Листвянка</b><br>Главный туристический посёлок на берегу Байкала.'
-);
+L.marker([51.85, 104.87]).addTo(map)
+.bindPopup('<b>Листвянка</b><br>Главный туристический посёлок.');
 
-L.marker([53.15, 107.34])
-.addTo(map)
-.bindPopup(
-    '<b>Ольхон</b><br>Самый известный остров озера Байкал.'
-);
+L.marker([53.15, 107.34]).addTo(map)
+.bindPopup('<b>Ольхон</b><br>Самый известный остров Байкала.');
 
-L.marker([51.75, 104.75])
-.addTo(map)
-.bindPopup(
-    '<b>КБЖД</b><br>Кругобайкальская железная дорога.'
-);
+L.marker([51.75, 104.75]).addTo(map)
+.bindPopup('<b>КБЖД</b><br>Кругобайкальская железная дорога.');
 
-L.marker([52.04, 105.40])
-.addTo(map)
-.bindPopup(
-    '<b>Большое Голоустное</b><br>Популярное место для отдыха и прогулок.'
-);
+L.marker([52.04, 105.40]).addTo(map)
+.bindPopup('<b>Большое Голоустное</b><br>Место отдыха.');
 
-L.marker([51.60, 104.10])
-.addTo(map)
-.bindPopup(
-    '<b>Южное Прибайкалье</b><br>Живописные природные маршруты.'
-);
-
+L.marker([51.60, 104.10]).addTo(map)
+.bindPopup('<b>Южное Прибайкалье</b><br>Живописные маршруты.');
 </script>
 
+<!-- ===== ТВОЙ JS ===== -->
 <script src="script.js"></script>
 
 </body>
