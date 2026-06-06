@@ -13,7 +13,6 @@ function showOnScroll() {
     });
 }
 
-// чтобы не дергать лишний раз — легкая оптимизация
 window.addEventListener('scroll', showOnScroll);
 window.addEventListener('load', showOnScroll);
 
@@ -24,7 +23,6 @@ topBtn.id = "topBtn";
 topBtn.innerText = "↑ Наверх";
 document.body.appendChild(topBtn);
 
-// стиль кнопки (чтобы работала даже без CSS)
 topBtn.style.position = "fixed";
 topBtn.style.bottom = "25px";
 topBtn.style.right = "25px";
@@ -46,7 +44,6 @@ function scrollFunction() {
     }
 }
 
-// ВАЖНО: вместо onscroll (чисто и безопасно)
 window.addEventListener('scroll', scrollFunction);
 
 topBtn.addEventListener('click', () => {
@@ -55,17 +52,19 @@ topBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
-// ===== СКРЫТИЕ ШАПКИ ПРИ СКРОЛЛЕ =====
+
+
+// ===== ШАПКА (ИСПРАВЛЕНО ПОВЕДЕНИЕ) =====
 let lastScroll = 0;
 const header = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    if (currentScroll > lastScroll && currentScroll > 100) {
+    if (currentScroll > lastScroll && currentScroll > 120) {
         // скролл вниз → скрываем
         header.classList.add('hide');
-    } else {
+    } else if (currentScroll < lastScroll) {
         // скролл вверх → показываем
         header.classList.remove('hide');
     }
