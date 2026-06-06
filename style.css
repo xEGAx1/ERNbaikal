@@ -10,10 +10,9 @@ body {
     background: url('images/baikal_summer.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #1f3d2b;
-    padding-top: 90px; /* FIX: чтобы фиксированный header не перекрывал контент */
+    padding-top: 90px;
 }
 
-/* затемнение + глубина фона */
 body::before {
     content: "";
     position: fixed;
@@ -35,9 +34,9 @@ body::before {
     padding: 0 15px;
 }
 
-/* ===== HEADER (FIX: убран sticky конфликт) ===== */
+/* ===== HEADER ===== */
 header {
-    position: fixed; /* FIX */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -71,15 +70,12 @@ nav a {
     color: white;
     text-decoration: none;
     font-weight: 500;
-    transition: 0.3s;
-    position: relative;
 }
 
 nav a:hover {
     color: #d9ffe6;
 }
 
-/* активная страница */
 nav a.active {
     color: #b6ffe0;
     border-bottom: 2px solid #b6ffe0;
@@ -91,11 +87,6 @@ nav a.active {
     height: 70px;
     width: auto;
     display: block;
-    transition: 0.3s ease;
-}
-
-.logo-icon:hover {
-    transform: scale(1.05);
 }
 
 /* ===== HERO ===== */
@@ -107,44 +98,32 @@ nav a.active {
 
 .hero h1 {
     font-size: 54px;
-    font-weight: 700;
     margin-bottom: 10px;
-    letter-spacing: 1px;
 }
 
 .hero p {
     font-size: 20px;
     max-width: 700px;
     margin: 0 auto;
-    opacity: 0.9;
 }
 
-/* кнопка */
+/* ===== BUTTON ===== */
 .btn {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 28px;
     background: #6fcf97;
     color: white;
-    text-decoration: none;
     border-radius: 30px;
-    font-weight: 600;
-    transition: 0.3s;
+    text-decoration: none;
 }
 
-.btn:hover {
-    background: #57b87d;
-    transform: scale(1.05);
-}
-
-/* ===== СЕКЦИИ ===== */
+/* ===== SECTION ===== */
 .section {
     margin: 50px 0;
     padding: 60px 25px;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(5px);
+    background: rgba(255,255,255,0.92);
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
 }
 
 .section h2 {
@@ -154,7 +133,7 @@ nav a.active {
     font-size: 32px;
 }
 
-/* ===== КАРТОЧКИ ===== */
+/* ===== CARDS (ГЛАВНЫЙ FIX) ===== */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -162,58 +141,65 @@ nav a.active {
     align-items: stretch;
 }
 
+/* ВАЖНО: фикс ширины */
 .card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255,255,255,0.95);
     border-radius: 18px;
     padding: 20px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    transition: 0.3s ease;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.18);
-    z-index: 2;
-}
-
+/* ВАЖНО: убираем растяжение картинок */
 .card img {
     width: 100%;
     height: 180px;
     object-fit: cover;
+    display: block;
+    border-radius: 12px;
 }
 
-/* ===== MAP (FIX LEAFLET) ===== */
+/* ===== ROUTES FIX (ВАЖНО ДЛЯ ЛИСТВЯНКИ) ===== */
+.route-block,
+.card {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* если на routes.html есть картинки без card */
+.route-block img {
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+
+/* ===== MAP ===== */
 #map {
-    height: 550px; /* FIX: обязательная высота */
+    height: 550px;
     width: 100%;
     margin-top: 20px;
     border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-.map-description {
-    text-align: center;
-    margin-bottom: 20px;
 }
 
 /* ===== FOOTER ===== */
 footer {
-    background: rgba(60, 140, 90, 0.9);
+    background: rgba(60,140,90,0.9);
     color: white;
     text-align: center;
     padding: 20px;
-    margin-top: 60px;
 }
 
 /* ===== FADE ===== */
 .fade-in {
     opacity: 0;
     transform: translateY(25px);
-    transition: all 0.8s ease;
+    transition: 0.8s ease;
 }
 
 .fade-in.show {
@@ -221,120 +207,8 @@ footer {
     transform: translateY(0);
 }
 
-/* ===== ROUTES ===== */
-.route-block {
-    background: rgba(255, 255, 255, 0.92);
-    padding: 22px;
-    margin: 18px auto;
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.10);
-    max-width: 800px;
-    transition: 0.3s;
-}
-
-.route-block:hover {
-    transform: translateY(-5px);
-}
-
-.route-block h3 {
-    color: #2f6f4e;
-    margin-bottom: 10px;
-}
-
-/* ===== ADAPTIVE ===== */
+/* ===== RESPONSIVE ===== */
 @media (max-width: 600px) {
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .logo-icon {
-        height: 60px;
-    }
-}
-
-/* ===== FIX КАРТОЧЕК ===== */
-.cards {
-    align-items: stretch;
-}
-
-.card p {
-    flex-grow: 1;
-    line-height: 1.5;
-}
-/* ===== FIX КАРТОЧЕК (БЕЗ ПЕРЕПИСЫВАНИЯ КОДА) ===== */
-
-.card img {
-    width: 100% !important;
-    height: 180px !important;
-    object-fit: cover !important;
-    display: block;
-}
-
-/* защита от глобальных img правил */
-.card {
-    overflow: hidden;
-}
-
-/* если где-то есть глобальный img { width:100% } */
-.section img,
-.card img {
-    max-width: 100%;
-}
-/* ===== HARD FIX КАРТОЧЕК (БЕЗ УДАЛЕНИЙ) ===== */
-
-.cards {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
-    gap: 22px !important;
-    align-items: stretch !important;
-}
-
-.card {
-    width: 100% !important;
-    max-width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    overflow: hidden !important;
-}
-
-.card img {
-    width: 100% !important;
-    height: 180px !important;
-    object-fit: cover !important;
-    display: block !important;
-}
-
-/* ===== FIX 1: карточки (НЕ ЛОМАЕТ ТВОЙ ДИЗАЙН) ===== */
-.card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    display: block;
-    border-radius: 14px;
-}
-
-/* ===== FIX 2: маршруты (lisvjanka.html и другие) ===== */
-/* именно это у тебя сейчас раздувает картинки на весь экран */
-
-.route-block img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 10px auto;
-    border-radius: 14px;
-}
-
-/* ===== FIX 3: защита от глобальных img конфликтов ===== */
-/* если где-то есть img { width:100% } */
-
-.section img,
-.route-block img,
-.card img {
-    max-width: 100%;
+    .hero h1 { font-size: 34px; }
+    nav { flex-direction: column; gap: 10px; }
 }
