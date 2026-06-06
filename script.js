@@ -1,5 +1,3 @@
-
-
 // ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ =====
 const items = document.querySelectorAll('.fade-in');
 
@@ -47,11 +45,14 @@ function scrollFunction() {
 window.addEventListener('scroll', scrollFunction);
 
 topBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
 
 
-// ===== ШАПКА =====
+// ===== ШАПКА (СТАБИЛЬНОЕ ПОВЕДЕНИЕ) =====
 let lastScroll = window.scrollY;
 const header = document.querySelector('header');
 
@@ -74,45 +75,49 @@ window.addEventListener('scroll', () => {
 });
 
 
-// ===== ИНТЕРАКТИВНАЯ КАРТА БАЙКАЛА (ИСПРАВЛЕННАЯ ГЕОГРАФИЯ) =====
+// ===== КАРТА БАЙКАЛА (ИСПРАВЛЕННАЯ + ССЫЛКИ НА СТРАНИЦЫ) =====
 if (document.getElementById('map')) {
 
-    const map = L.map('map').setView([52.8, 105.3], 7);
+    const map = L.map('map').setView([52.7, 105.3], 7);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 300);
+
     const places = [
         {
             name: "Листвянка",
-            coords: [51.85, 104.87],
+            coords: [51.87, 104.86],
             desc: "Главный туристический посёлок на Байкале.",
-            link: "routes.html#listvyanka"
+            link: "listvyanka.html"
         },
         {
             name: "Ольхон",
-            coords: [53.15, 107.34],
+            coords: [53.19, 107.34],
             desc: "Самый известный остров Байкала.",
-            link: "routes.html#olkhon"
+            link: "olkhon.html"
         },
         {
             name: "КБЖД",
-            coords: [51.78, 104.65], // ✔ ИСПРАВЛЕНО (была в воде)
+            coords: [51.72, 104.55],
             desc: "Кругобайкальская железная дорога вдоль южного берега Байкала.",
-            link: "routes.html#kbzhd"
+            link: "kbzhd.html"
         },
         {
             name: "Большое Голоустное",
-            coords: [52.04, 105.40],
+            coords: [52.03, 105.41],
             desc: "Тихое место для отдыха и природы.",
-            link: "routes.html#goloustnoe"
+            link: "bolshoe_golousnoe.html"
         },
         {
             name: "Южное Прибайкалье",
-            coords: [51.60, 103.90], // ✔ ИСПРАВЛЕНО (была в воде)
+            coords: [51.85, 104.30],
             desc: "Байкальск, горы и живописные маршруты.",
-            link: "routes.html#south_baikal"
+            link: "yuzhnoe_pribaikalye.html"
         }
     ];
 
@@ -120,21 +125,22 @@ if (document.getElementById('map')) {
         const marker = L.marker(p.coords).addTo(map);
 
         marker.bindPopup(`
-            <div style="min-width:180px">
-                <b>${p.name}</b><br>
+            <div style="min-width:200px">
+                <b>${p.name}</b>
                 <p style="margin:6px 0;">${p.desc}</p>
+
                 <a href="${p.link}"
                    style="
-                       display:inline-block;
-                       margin-top:6px;
-                       padding:6px 10px;
-                       background:#2f6f4e;
-                       color:#fff;
-                       border-radius:8px;
-                       text-decoration:none;
-                       font-size:13px;
+                        display:inline-block;
+                        margin-top:8px;
+                        padding:6px 10px;
+                        background:#2f6f4e;
+                        color:#fff;
+                        border-radius:8px;
+                        text-decoration:none;
+                        font-size:13px;
                    ">
-                   Подробнее
+                   Подробнее →
                 </a>
             </div>
         `);
