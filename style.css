@@ -285,3 +285,26 @@ footer {
 .card img {
     max-width: 100%;
 }
+/* ===== HARD FIX КАРТОЧЕК (БЕЗ УДАЛЕНИЙ) ===== */
+
+.cards {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+    gap: 22px !important;
+    align-items: stretch !important;
+}
+
+.card {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow: hidden !important;
+}
+
+.card img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    display: block !important;
+}
