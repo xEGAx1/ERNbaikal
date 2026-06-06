@@ -1,4 +1,5 @@
 
+
 // ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ =====
 const items = document.querySelectorAll('.fade-in');
 
