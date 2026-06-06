@@ -88,39 +88,38 @@ if (document.getElementById('map')) {
         map.invalidateSize();
     }, 300);
 
-    const places = [
-        {
-            name: "Листвянка",
-            coords: [51.87, 104.86],
-            desc: "Главный туристический посёлок на Байкале.",
-            link: "listvyanka.html"
-        },
-        {
-            name: "Ольхон",
-            coords: [53.19, 107.34],
-            desc: "Самый известный остров Байкала.",
-            link: "olkhon.html"
-        },
-        {
-            name: "КБЖД",
-            coords: [51.72, 104.55],
-            desc: "Кругобайкальская железная дорога вдоль южного берега Байкала.",
-            link: "kbzhd.html"
-        },
-        {
-            name: "Большое Голоустное",
-            coords: [52.03, 105.41],
-            desc: "Тихое место для отдыха и природы.",
-            link: "bolshoe_golousnoe.html"
-        },
-        {
-            name: "Южное Прибайкалье",
-            coords: [51.85, 104.30],
-            desc: "Байкальск, горы и живописные маршруты.",
-            link: "yuzhnoe_pribaikalye.html"
-        }
-    ];
-
+   const places = [
+    {
+        name: "Листвянка",
+        coords: [51.87, 104.88],
+        link: "listvyanka.html",
+        desc: "Посёлок у истока Ангары"
+    },
+    {
+        name: "Ольхон",
+        coords: [53.15, 107.34],
+        link: "olkhon.html",
+        desc: "Самый большой остров Байкала"
+    },
+    {
+        name: "КБЖД",
+        coords: [51.78, 104.55],
+        link: "kbzhd.html",
+        desc: "Кругобайкальская железная дорога"
+    },
+    {
+        name: "Большое Голоустное",
+        coords: [52.04, 105.40],
+        link: "bolshoe_golousnoe.html",
+        desc: "Тихий природный посёлок"
+    },
+    {
+        name: "Южное Прибайкалье",
+        coords: [51.60, 103.90],
+        link: "yuzhnoe_pribaikalye.html",
+        desc: "Горы, Байкальск и природа"
+    }
+];
     places.forEach(p => {
         const marker = L.marker(p.coords).addTo(map);
 
