@@ -54,18 +54,27 @@ topBtn.addEventListener('click', () => {
 });
 
 
-// ===== ШАПКА (ИСПРАВЛЕНО ПОВЕДЕНИЕ) =====
-let lastScroll = 0;
+// ===== ШАПКА (СТАБИЛЬНОЕ ПОВЕДЕНИЕ, БЕЗ ПЕРЕКРЫТИЙ) =====
+let lastScroll = window.scrollY;
 const header = document.querySelector('header');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.scrollY;
 
-    if (currentScroll > lastScroll && currentScroll > 120) {
-        // скролл вниз → скрываем
+    // всегда показываем в самом верху
+    if (currentScroll <= 80) {
+        header.classList.remove('hide');
+        lastScroll = currentScroll;
+        return;
+    }
+
+    // скролл вниз → скрываем
+    if (currentScroll > lastScroll) {
         header.classList.add('hide');
-    } else if (currentScroll < lastScroll) {
-        // скролл вверх → показываем
+    }
+
+    // скролл вверх → показываем
+    if (currentScroll < lastScroll) {
         header.classList.remove('hide');
     }
 
