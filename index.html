@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <title>ERN Baikal — Путешествия по Байкалу</title>
 
-    <base href="/ERNbaikal/">
+    <!-- ❌ УДАЛЕНО: base href (ломал пути и 404) -->
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- MAPLIBRE (ВМЕСТО LEAFLET) -->
+    <!-- MAPLIBRE -->
     <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
     <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 </head>
@@ -88,31 +88,31 @@ if (document.getElementById('map')) {
         {
             name: "Листвянка",
             coords: [104.88, 51.87],
-            link: "listvyanka.html",
+            link: "routes/listvyanka.html",
             desc: "Посёлок у истока Ангары"
         },
         {
             name: "Ольхон",
             coords: [107.34, 53.15],
-            link: "olkhon.html",
+            link: "routes/olkhon.html",
             desc: "Самый большой остров Байкала"
         },
         {
             name: "КБЖД",
-            coords: [104.05, 51.75], // ✔ ИСПРАВЛЕНО
-            link: "kbzhd.html",
+            coords: [104.05, 51.75],
+            link: "routes/kbzhd.html",
             desc: "Кругобайкальская железная дорога"
         },
         {
             name: "Большое Голоустное",
             coords: [105.30, 52.04],
-            link: "bolshoe_golousnoe.html",
+            link: "routes/bolshoe_golousnoe.html",
             desc: "Тихий природный посёлок"
         },
         {
             name: "Южное Прибайкалье",
             coords: [104.15, 51.85],
-            link: "yuzhnoe_pribaikalye.html",
+            link: "routes/yuzhnoe_pribaikalye.html",
             desc: "Горы, Байкальск и природа"
         }
     ];
