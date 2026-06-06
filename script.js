@@ -1,78 +1,89 @@
 if (document.getElementById('map')) {
 
-    // ===== СОЗДАНИЕ КАРТЫ =====
-    const map = L.map('map', {
-        zoomControl: true
-    }).setView([52.5, 105.0], 7); // нормальный центр Байкала
+    const map = new maplibregl.Map({
+        container: 'map',
+        style: {
+            version: 8,
+            sources: {
+                osm: {
+                    type: "raster",
+                    tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+                    tileSize: 256,
+                    attribution: "&copy; OpenStreetMap"
+                }
+            },
+            layers: [
+                {
+                    id: "osm",
+                    type: "raster",
+                    source: "osm"
+                }
+            ]
+        },
+        center: [105.0, 52.5],
+        zoom: 6.5
+    });
 
-    // ===== СЛОЙ КАРТЫ (оставляем OpenStreetMap — он стандартный и нормальный) =====
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap'
-    }).addTo(map);
-
-    const group = L.featureGroup().addTo(map);
-
-    // ===== МЕСТА (ИСПРАВЛЕННЫЕ КООРДИНАТЫ) =====
     const places = [
         {
             name: "Листвянка",
-            coords: [51.87, 104.88],
+            coords: [104.88, 51.87],
             link: "routes/listvyanka.html",
             desc: "Посёлок у истока Ангары"
         },
         {
             name: "Ольхон",
-            coords: [53.15, 107.34],
+            coords: [107.34, 53.15],
             link: "routes/olkhon.html",
             desc: "Самый большой остров Байкала"
         },
         {
             name: "КБЖД",
-            coords: [51.72, 103.64], // ✔ ВАЖНО: подняли севернее/восточнее берега
+            coords: [103.64, 51.72],
             link: "routes/kbzhd.html",
             desc: "Кругобайкальская железная дорога"
         },
         {
             name: "Большое Голоустное",
-            coords: [52.04, 105.30],
+            coords: [105.30, 52.04],
             link: "routes/bolshoe_golousnoe.html",
             desc: "Тихий природный посёлок"
         },
         {
             name: "Южное Прибайкалье",
-            coords: [51.85, 104.15], // ✔ нормальная зона Байкальска
+            coords: [104.15, 51.85],
             link: "routes/yuzhnoe_pribaikalye.html",
             desc: "Горы, Байкальск и природа"
         }
     ];
 
-    // ===== МАРКЕРЫ + ПОПАПЫ =====
     places.forEach(p => {
 
-        const marker = L.marker(p.coords).addTo(map);
+        const el = document.createElement('div');
+        el.style.width = "14px";
+        el.style.height = "14px";
+        el.style.background = "#2f6f4e";
+        el.style.borderRadius = "50%";
+        el.style.border = "2px solid white";
+        el.style.cursor = "pointer";
 
-        marker.bindPopup(`
-            <div style="min-width:200px">
-                <b>${p.name}</b><br>
-                <small>${p.desc}</small><br><br>
-
-                <a href="${p.link}" style="
-                    display:inline-block;
-                    padding:6px 10px;
-                    background:#2f6f4e;
-                    color:#fff;
-                    border-radius:8px;
-                    text-decoration:none;
-                    font-size:13px;
-                ">
-                    Подробнее
-                </a>
-            </div>
-        `);
-
-        group.addLayer(marker);
+        const marker = new maplibregl.Marker(el)
+            .setLngLat(p.coords)
+            .setPopup(
+                new maplibregl.Popup({ offset: 25 })
+                    .setHTML(`
+                        <b>${p.name}</b><br>
+                        <small>${p.desc}</small><br><br>
+                        <a href="${p.link}" style="
+                            display:inline-block;
+                            padding:6px 10px;
+                            background:#2f6f4e;
+                            color:#fff;
+                            border-radius:8px;
+                            text-decoration:none;
+                        ">Подробнее</a>
+                    `)
+            )
+            .addTo(map);
     });
-
-    // ===== АВТОМАСШТАБ (ЭТО УБИРАЕТ “В ВОДЕ”) =====
-    map.fitBounds(group.getBounds().pad(0.25));
 }
