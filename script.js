@@ -1,3 +1,4 @@
+// ===== MAP =====
 if (document.getElementById('map')) {
 
     const map = new maplibregl.Map({
@@ -37,7 +38,7 @@ if (document.getElementById('map')) {
         },
         {
             name: "КБЖД",
-            coords: [103.90, 51.75],
+            coords: [104.05, 51.75],
             link: "routes/kbzhd.html",
             desc: "Кругобайкальская железная дорога"
         },
@@ -49,7 +50,7 @@ if (document.getElementById('map')) {
         },
         {
             name: "Южное Прибайкалье",
-            coords: [103.70, 51.60],
+            coords: [104.15, 51.85],
             link: "routes/yuzhnoe_pribaikalye.html",
             desc: "Горы, Байкальск и природа"
         }
@@ -72,14 +73,16 @@ if (document.getElementById('map')) {
                 new maplibregl.Popup({ offset: 25 }).setHTML(`
                     <b>${p.name}</b><br>
                     <small>${p.desc}</small><br><br>
-                    <a href="${p.link}" style="
-                        display:inline-block;
-                        padding:6px 10px;
-                        background:#2f6f4e;
-                        color:#fff;
-                        border-radius:8px;
-                        text-decoration:none;
-                    ">Подробнее</a>
+                    <a href="${p.link}"
+                       style="
+                       display:inline-block;
+                       padding:6px 10px;
+                       background:#2f6f4e;
+                       color:#fff;
+                       border-radius:8px;
+                       text-decoration:none;">
+                       Подробнее
+                    </a>
                 `)
             )
             .addTo(map);
@@ -87,8 +90,7 @@ if (document.getElementById('map')) {
         bounds.push(p.coords);
     });
 
-    map.fitBounds(bounds, {
-        padding: 80,
-        maxZoom: 7
-    });
+    if (bounds.length > 0) {
+        map.fitBounds(bounds, { padding: 80, maxZoom: 7 });
+    }
 }
