@@ -212,3 +212,41 @@ footer {
     .hero h1 { font-size: 34px; }
     nav { flex-direction: column; gap: 10px; }
 }
+/* ===== FINAL FIX ДЛЯ СЛОМАННЫХ КАРТОЧЕК ===== */
+
+/* защита от глобального img */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* карточки всегда контейнер */
+.card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* нормальная фиксация изображений */
+.card img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    display: block;
+    border-radius: 14px;
+}
+
+/* маршруты (если они такие же сломались) */
+.route-block {
+    max-width: 800px;
+    margin: 18px auto;
+    overflow: hidden;
+}
+
+.route-block img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    border-radius: 14px;
+}
