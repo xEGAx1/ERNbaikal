@@ -55,3 +55,20 @@ topBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+// ===== СКРЫТИЕ ШАПКИ ПРИ СКРОЛЛЕ =====
+let lastScroll = 0;
+const header = document.querySelector('header');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        // скролл вниз → скрываем
+        header.classList.add('hide');
+    } else {
+        // скролл вверх → показываем
+        header.classList.remove('hide');
+    }
+
+    lastScroll = currentScroll;
+});
