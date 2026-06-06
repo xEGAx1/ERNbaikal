@@ -37,7 +37,7 @@ if (document.getElementById('map')) {
         },
         {
             name: "КБЖД",
-            coords: [104.05, 51.75],
+            coords: [103.90, 51.75],
             link: "routes/kbzhd.html",
             desc: "Кругобайкальская железная дорога"
         },
@@ -49,11 +49,13 @@ if (document.getElementById('map')) {
         },
         {
             name: "Южное Прибайкалье",
-            coords: [104.15, 51.85],
+            coords: [103.70, 51.60],
             link: "routes/yuzhnoe_pribaikalye.html",
             desc: "Горы, Байкальск и природа"
         }
     ];
+
+    const bounds = [];
 
     places.forEach(p => {
 
@@ -67,20 +69,26 @@ if (document.getElementById('map')) {
         new maplibregl.Marker(el)
             .setLngLat(p.coords)
             .setPopup(
-                new maplibregl.Popup({ offset: 25 })
-                    .setHTML(`
-                        <b>${p.name}</b><br>
-                        <small>${p.desc}</small><br><br>
-                        <a href="${p.link}" style="
-                            display:inline-block;
-                            padding:6px 10px;
-                            background:#2f6f4e;
-                            color:#fff;
-                            border-radius:8px;
-                            text-decoration:none;
-                        ">Подробнее</a>
-                    `)
+                new maplibregl.Popup({ offset: 25 }).setHTML(`
+                    <b>${p.name}</b><br>
+                    <small>${p.desc}</small><br><br>
+                    <a href="${p.link}" style="
+                        display:inline-block;
+                        padding:6px 10px;
+                        background:#2f6f4e;
+                        color:#fff;
+                        border-radius:8px;
+                        text-decoration:none;
+                    ">Подробнее</a>
+                `)
             )
             .addTo(map);
+
+        bounds.push(p.coords);
+    });
+
+    map.fitBounds(bounds, {
+        padding: 80,
+        maxZoom: 7
     });
 }
