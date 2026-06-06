@@ -10,6 +10,7 @@ body {
     background: url('images/baikal_summer.jpg') no-repeat center center fixed;
     background-size: cover;
     color: #1f3d2b;
+    padding-top: 90px; /* FIX: чтобы фиксированный header не перекрывал контент */
 }
 
 /* затемнение + глубина фона */
@@ -34,16 +35,24 @@ body::before {
     padding: 0 15px;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (FIX: убран sticky конфликт) ===== */
 header {
+    position: fixed; /* FIX */
+    top: 0;
+    left: 0;
+    width: 100%;
     background: rgba(60, 140, 90, 0.80);
     backdrop-filter: blur(12px);
-    position: sticky;
-    top: 0;
     z-index: 1000;
     padding: 6px 0;
+    transition: transform 0.3s ease;
 }
 
+header.hide {
+    transform: translateY(-100%);
+}
+
+/* ===== NAV ===== */
 nav {
     display: flex;
     justify-content: space-between;
@@ -77,7 +86,7 @@ nav a.active {
     padding-bottom: 3px;
 }
 
-/* ===== ЛОГОТИП ===== */
+/* ===== ЛОГО ===== */
 .logo-icon {
     height: 70px;
     width: auto;
@@ -145,50 +154,12 @@ nav a.active {
     font-size: 32px;
 }
 
-/* ===== КАРТИНКА ===== */
-.section-img {
-    width: 100%;
-    max-width: 800px;
-    height: 380px;
-    object-fit: cover;
-    display: block;
-    margin: 20px auto;
-    border-radius: 14px;
-    transition: 0.4s ease;
-}
-
-.section-img:hover {
-    transform: scale(1.02);
-    filter: brightness(1.05);
-}
-
-/* ===== ГАЛЕРЕЯ ===== */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-    max-width: 800px;
-    margin: 30px auto;
-}
-
-.gallery img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 14px;
-    transition: 0.3s ease;
-}
-
-.gallery img:hover {
-    transform: scale(1.06);
-    filter: brightness(1.1);
-}
-
 /* ===== КАРТОЧКИ ===== */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 22px;
+    align-items: stretch;
 }
 
 .card {
@@ -197,27 +168,36 @@ nav a.active {
     padding: 20px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.12);
     transition: 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+    z-index: 2;
 }
 
-/* ===== MAP ===== */
-.map-wrapper {
-    background: rgba(255, 255, 255, 0.92);
-    padding: 30px;
-    border-radius: 22px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    text-align: center;
-}
-
-.map {
+.card img {
     width: 100%;
-    height: 420px;
-    border-radius: 18px;
-    border: none;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* ===== MAP (FIX LEAFLET) ===== */
+#map {
+    height: 550px; /* FIX: обязательная высота */
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.map-description {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* ===== FOOTER ===== */
@@ -229,7 +209,7 @@ footer {
     margin-top: 60px;
 }
 
-/* ===== FADE ANIMATION ===== */
+/* ===== FADE ===== */
 .fade-in {
     opacity: 0;
     transform: translateY(25px);
@@ -263,18 +243,9 @@ footer {
 
 /* ===== ADAPTIVE ===== */
 @media (max-width: 600px) {
-
     nav {
         flex-direction: column;
         gap: 10px;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr;
-    }
-
-    .section-img {
-        height: 240px;
     }
 
     .hero h1 {
@@ -285,115 +256,13 @@ footer {
         height: 60px;
     }
 }
-/* ===== ФИКС КАРТОЧЕК (СТАБИЛИЗАЦИЯ ВЕРСТКИ) ===== */
 
+/* ===== FIX КАРТОЧЕК ===== */
 .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
     align-items: stretch;
-}
-
-/* защита от “съезжания” контента */
-.card {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-/* картинка всегда одинаковая по высоте */
-.card img {
-    display: block;
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
-/* текст внутри не ломает карточку */
-.card h3 {
-    line-height: 1.3;
 }
 
 .card p {
     flex-grow: 1;
     line-height: 1.5;
-}
-
-/* чтобы hover не ломал сетку */
-.card:hover {
-    z-index: 2;
-}
-.route-info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 25px;
-}
-
-/* карточки региона — делаем стабильными */
-.info-card {
-    background: rgba(255, 255, 255, 0.92);
-    padding: 18px;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.10);
-    transition: 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-/* hover не ломает сетку */
-.info-card:hover {
-    transform: translateY(-6px);
-}
-
-/* текст внутри */
-.info-card h4 {
-    color: #2f6f4e;
-    margin-bottom: 6px;
-}
-
-.info-card p {
-    font-weight: 600;
-    color: #333;
-}
-
-/* защита от "исчезновения" */
-.info-card {
-    min-height: 90px;
-}
-/* ===== ГЛОБАЛЬНОЕ ОКРУГЛЕНИЕ ВСЕХ КАРТИНОК ===== */
-img {
-    border-radius: 16px;
-}
-
-/* чтобы hover-эффекты не конфликтовали */
-.section-img,
-.card img,
-.gallery img {
-    border-radius: 16px;
-    overflow: hidden;
-}
-
-/* чуть красивее карточки */
-.card {
-    border-radius: 18px;
-}
-
-/* карта тоже в стиль сайта */
-.map,
-iframe {
-    border-radius: 18px;
-}
-#map {
-    height: 550px;
-    width: 100%;
-    margin-top: 20px;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-}
-
-.map-description {
-    text-align: center;
-    margin-bottom: 20px;
 }
