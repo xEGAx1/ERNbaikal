@@ -266,3 +266,22 @@ footer {
     flex-grow: 1;
     line-height: 1.5;
 }
+/* ===== FIX КАРТОЧЕК (БЕЗ ПЕРЕПИСЫВАНИЯ КОДА) ===== */
+
+.card img {
+    width: 100% !important;
+    height: 180px !important;
+    object-fit: cover !important;
+    display: block;
+}
+
+/* защита от глобальных img правил */
+.card {
+    overflow: hidden;
+}
+
+/* если где-то есть глобальный img { width:100% } */
+.section img,
+.card img {
+    max-width: 100%;
+}
