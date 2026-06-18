@@ -59,7 +59,6 @@ if (document.getElementById('map')) {
             coords: [106.85, 53.15],
            link: "routes/maloe_more.html",
            desc: "Тёплые бухты и пролив Байкала"
-}
         }
     ];
 
