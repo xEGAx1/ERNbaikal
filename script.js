@@ -53,6 +53,13 @@ if (document.getElementById('map')) {
             coords: [104.15, 51.85],
             link: "routes/yuzhnoe_pribaikalye.html",
             desc: "Горы, Байкальск и природа"
+         },
+        {
+            name: "Малое Море",
+            coords: [106.85, 53.15],
+           link: "routes/maloe_more.html",
+           desc: "Тёплые бухты и пролив Байкала"
+}
         }
     ];
 
